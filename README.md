@@ -10,6 +10,4 @@ Telegram-бот с умными рекомендациями, каталогом
 
 ```bash
 pip install -r requirements.txt
-cp .env.example .env
-# Вставьте токены
 python -m bot.main

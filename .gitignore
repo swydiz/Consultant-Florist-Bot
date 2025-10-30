@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# БД
+*.db
+*.sqlite3
+
+# Переменные
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+
+# Логи
+*.log

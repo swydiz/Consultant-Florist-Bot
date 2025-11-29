@@ -1,41 +1,20 @@
+# bot.py
 import asyncio
 import logging
-from aiogram import Bot, Dispatcher, Router, F
-from aiogram.types import Message
-from database import AsyncSessionLocal
 import os
 from dotenv import load_dotenv
-from sqlalchemy import text
+from aiogram import Bot, Dispatcher
 
+from bot.handlers.base import router as base_router
+from bot.handlers.flowers import router as flowers_router
 
 load_dotenv()
-print("DATABASE_URL:", os.getenv("DATABASE_URL"))
 
 bot = Bot(token=os.getenv("BOT_TOKEN"))
 dp = Dispatcher()
-router = Router()
 
-@router.message(F.text == "/start")
-async def start(message: Message):
-    await message.answer("Привет! База подключена. Напиши /flowers")
-
-@router.message(F.text == "/flowers")
-async def flowers(message: Message):
-    async with AsyncSessionLocal() as db:
-        try:
-            result = await db.execute(text("SELECT name, price FROM flowers"))
-            flowers_list = result.fetchall()
-            
-            if flowers_list:
-                text_msg = "Наш каталог:\n\n" + "\n".join(f"• {name} — {price} ₽" for name, price in flowers_list)
-            else:
-                text_msg = "Каталог пуст"
-                
-            await message.answer(text_msg)
-        except Exception as e:
-            await message.answer(f"Ошибка: {e}")
-
-dp.include_router(router)
+dp.include_router(base_router)
+dp.include_router(flowers_router)
 
 async def main():
     print("Бот запущен!")

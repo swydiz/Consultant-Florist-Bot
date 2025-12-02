@@ -1,8 +1,9 @@
 from aiogram import types, Dispatcher
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from bot.keyboards import get_base_keyboard, get_help_keyboard, get_main_keyboard, get_cart_keyboard
+from bot.config.keyboards import get_base_keyboard, get_help_keyboard, get_main_keyboard, get_cart_keyboard
 from bot.database import database
+
 
 class BaseHandlers:
     def __init__(self, dp: Dispatcher):
@@ -60,3 +61,5 @@ class BaseHandlers:
             help_text,
             reply_markup=get_help_keyboard()
         )
+
+    

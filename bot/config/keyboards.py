@@ -24,7 +24,7 @@ def get_main_keyboard():
 
 async def get_categories_keyboard():
     """Клавиатура с категориями цветов"""
-    from models import Category  # импортируем здесь, чтобы не было циклического импорта
+    from database.models import Category  # импортируем здесь, чтобы не было циклического импорта
     from database import AsyncSessionLocal
     from sqlalchemy import select
 

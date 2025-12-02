@@ -4,6 +4,7 @@ from aiogram import Bot, Dispatcher
 from dotenv import load_dotenv
 from bot.handlers.base import BaseHandlers
 from bot.handlers.flowers import FlowerHandlers
+from bot.handlers.help import HelpHandlers
 from bot.config.settings import settings
 
 
@@ -18,6 +19,8 @@ async def main():
     BaseHandlers(dp)
     print(2)
     FlowerHandlers(dp)
+    print(3)
+    HelpHandlers(dp)
 
     print("Бот запущен!")
     await dp.start_polling(bot)
